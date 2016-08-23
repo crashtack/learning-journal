@@ -22,7 +22,7 @@ tests_require = [
     'pytest',  # includes virtualenv
     'pytest-cov',
     'pytest-watch',
-    'tox'
+    'tox',
     ]
 
 setup(name='learning-journal',
