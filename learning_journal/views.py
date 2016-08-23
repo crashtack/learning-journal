@@ -6,8 +6,7 @@ HERE = os.path.dirname(__file__)
 
 
 def my_view(request):
-    imported_text = open(os.path.join(
-        HERE + '/template', 'sample.html')).read()
+    imported_text = open(os.path.join(HERE, 'template/sample.html')).read()
     return Response(imported_text)
 
 
