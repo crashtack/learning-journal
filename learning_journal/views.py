@@ -21,8 +21,10 @@ def journal(request):
 
 
 def bootstrap(request):
-    imported_text = open(os.path.join(HERE, 'bootstrap.html')).read()
+    imported_text = open(os.path.join(HERE,
+                                      'navbar-static-top/index.html')).read()
     return Response(imported_text)
+
 
 def includeme(config):
     config.add_view(my_view, route_name='home')
