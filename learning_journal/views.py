@@ -20,7 +20,12 @@ def journal(request):
     return Response(imported_text)
 
 
+def bootstrap(request):
+    imported_text = open(os.path.join(HERE, 'bootstrap.html')).read()
+    return Response(imported_text)
+
 def includeme(config):
     config.add_view(my_view, route_name='home')
     config.add_view(my_view2, route_name='detail')
     config.add_view(journal, route_name='journal')
+    config.add_view(bootstrap, route_name='bootstrap')
