@@ -1,7 +1,7 @@
 from pyramid.response import Response
 import os
 from pyramid.view import view_config
-from jinja2 import Template
+# from jinja2 import Template
 
 
 
@@ -41,14 +41,10 @@ def list_(request):
     return {"entries": ENTRIES}
 
 
-def my_view2(request):
-    imported_text = open(os.path.join(HERE, 'templates/sample2.html')).read()
-    return Response(imported_text)
-
-
-def create(request):
-    imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
-    return Response(imported_text)
+# @view_config(route_name='create', renderer='templates/new-entry.jinga2')
+# def create(request):
+#     # imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
+#     return {"entries": ENTRIES}
 
 
 def detail(request):
@@ -61,24 +57,21 @@ def update(request):
     return Response(imported_text)
 
 
+def my_view2(request):
+    imported_text = open(os.path.join(HERE, 'templates/sample2.html')).read()
+    return Response(imported_text)
+
+
 def bootstrap(request):
     imported_text = open(os.path.join(HERE,
                                       'navbar-static-top/index.html')).read()
     return Response(imported_text)
 
 
-def single_entry():
-    pass
-
-
-def edit_entry():
-    pass
-
-
 def includeme(config):
     # config.add_view(list_, route_name='list')
     config.add_view(detail, route_name='detail')
-    config.add_view(create, route_name='create')
+    # config.add_view(create, route_name='create')
     config.add_view(update, route_name='update')
 
     config.add_view(bootstrap, route_name='bootstrap')
