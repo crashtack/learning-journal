@@ -1,13 +1,26 @@
 from pyramid.response import Response
 import os
+from pyramid  import view_config
+from jinja2 import Template
+
 
 
 HERE = os.path.dirname(__file__)
 
+ENTRIES = [
+     {
+        "title": "Day1",
+        "id": 1,
+        "date": "August 23, 2016",
+        "body": "Today I learned about Pyramid."
+     }
+]
 
+
+@view_config(route_name='list', renderer='templates/home.jinja2')
 def list_(request):
-    imported_text = open(os.path.join(HERE, 'templates/home.html')).read()
-    return Response(imported_text)
+    # imported_text = open(os.path.join(HERE, 'templates/home.html')).read()
+    return {"entries": ENTRIES}
 
 
 def my_view2(request):
@@ -45,7 +58,7 @@ def edit_entry():
 
 
 def includeme(config):
-    config.add_view(list_, route_name='list')
+    # config.add_view(list_, route_name='list')
     config.add_view(detail, route_name='detail')
     config.add_view(create, route_name='create')
     config.add_view(update, route_name='update')
