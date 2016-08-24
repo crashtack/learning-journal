@@ -5,8 +5,8 @@ import os
 HERE = os.path.dirname(__file__)
 
 
-def my_view(request):
-    imported_text = open(os.path.join(HERE, 'template/sample.html')).read()
+def my_view1(request):
+    imported_text = open(os.path.join(HERE, 'templates/sample.html')).read()
     return Response(imported_text)
 
 
@@ -40,7 +40,7 @@ def edit_entry():
 
 
 def includeme(config):
-    config.add_view(my_view, route_name='home')
+    config.add_view(my_view1, route_name='home')
     config.add_view(my_view2, route_name='detail')
     config.add_view(journal, route_name='journal')
     config.add_view(new_entry, route_name='new-entry')
