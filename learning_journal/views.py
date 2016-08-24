@@ -47,19 +47,16 @@ def create(request):
     return {"entries": ENTRIES}
 
 
+@view_config(route_name='detail', renderer='templates/single-entry.jinja2')
 def detail(request):
-    imported_text = open(os.path.join(HERE, 'templates/single-entry.html')).read()
-    return Response(imported_text)
+    # imported_text = open(os.path.join(HERE, 'templates/single-entry.html')).read()
+    return {"entries": ENTRIES}
 
 
+@view_config(route_name='update', renderer='templates/edit-entry.jinja2')
 def update(request):
-    imported_text = open(os.path.join(HERE, 'templates/edit-entry.html')).read()
-    return Response(imported_text)
-
-
-def my_view2(request):
-    imported_text = open(os.path.join(HERE, 'templates/sample2.html')).read()
-    return Response(imported_text)
+    # imported_text = open(os.path.join(HERE, 'templates/edit-entry.html')).read()
+    return {"entries": ENTRIES}
 
 
 @view_config(route_name='bootstrap', renderer='navbar-static-top/index.jinja2')
