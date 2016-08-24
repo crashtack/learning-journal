@@ -1,6 +1,6 @@
 from pyramid.response import Response
 import os
-from pyramid  import view_config
+from pyramid.view  import view_config
 from jinja2 import Template
 
 
@@ -11,8 +11,14 @@ ENTRIES = [
      {
         "title": "Day1",
         "id": 1,
+        "date": "August 22, 2016",
+        "body": "Today I learned about <strong>Pyramid</strong>."
+     },
+     {
+        "title": "Day2",
+        "id": 2,
         "date": "August 23, 2016",
-        "body": "Today I learned about Pyramid."
+        "body": "Today I learned about heaps and templates."
      }
 ]
 

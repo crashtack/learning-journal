@@ -2,13 +2,15 @@
 <html>
     <head></head>
     <body>
+    {% for entry in entries %}
         <article>
-            <h1><a href=/journal/{{id}}>{{ title }}</a></h1>
+            <h1><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h1>
             <hr />
-            <p>Created <strong>{{ date }}</strong></p>
+            <p>Created <strong>{{ entry.date }}</strong></p>
             <hr />
-            <p>{{ body }}</p>
+            <p>{{ entry.body  | safe}}</p>
         </article>
+    {% endfor %}
     <h2><a href='/journal/new-entry'>New Entry</a></h2>
     </body>
 </html>
