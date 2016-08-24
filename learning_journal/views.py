@@ -41,10 +41,10 @@ def list_(request):
     return {"entries": ENTRIES}
 
 
-# @view_config(route_name='create', renderer='templates/new-entry.jinga2')
-# def create(request):
-#     # imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
-#     return {"entries": ENTRIES}
+@view_config(route_name='create', renderer='templates/new-entry.jinja2')
+def create(request):
+    # imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
+    return {"entries": ENTRIES}
 
 
 def detail(request):
@@ -62,10 +62,18 @@ def my_view2(request):
     return Response(imported_text)
 
 
+@view_config(route_name='bootstrap', renderer='navbar-static-top/index.jinja2')
 def bootstrap(request):
     imported_text = open(os.path.join(HERE,
                                       'navbar-static-top/index.html')).read()
     return Response(imported_text)
+
+
+# @view_config(route_name='list', renderer='templates/home.jinja2')
+# def bootstrap1(request):
+#     imported_text = open(os.path.join(HERE,
+#                                       'navbar-static-top/index.html')).read()
+#     return Response(imported_text)
 
 
 def includeme(config):
