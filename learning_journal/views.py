@@ -59,11 +59,11 @@ def update(request):
     return {"entries": ENTRIES}
 
 
-@view_config(route_name='bootstrap', renderer='navbar-static-top/index.jinja2')
+@view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
 def bootstrap(request):
-    imported_text = open(os.path.join(HERE,
-                                      'navbar-static-top/index.html')).read()
-    return Response(imported_text)
+    # imported_text = open(os.path.join(HERE,
+    #                                   'navbar-static-top/index.html')).read()
+    return {"entries": ENTRIES}
 
 
 # @view_config(route_name='list', renderer='templates/home.jinja2')
@@ -79,4 +79,4 @@ def includeme(config):
     # config.add_view(create, route_name='create')
     config.add_view(update, route_name='update')
 
-    config.add_view(bootstrap, route_name='bootstrap')
+    # config.add_view(bootstrap, route_name='bootstrap')
