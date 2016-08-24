@@ -5,23 +5,28 @@ import os
 HERE = os.path.dirname(__file__)
 
 
-def my_view1(request):
-    imported_text = open(os.path.join(HERE, 'templates/sample.html')).read()
+def list_(request):
+    imported_text = open(os.path.join(HERE, 'templates/home.html')).read()
     return Response(imported_text)
 
 
 def my_view2(request):
-    imported_text = open(os.path.join(HERE, 'sample2.html')).read()
+    imported_text = open(os.path.join(HERE, 'templates/sample2.html')).read()
     return Response(imported_text)
 
 
-def journal(request):
-    imported_text = open(os.path.join(HERE, 'journal.html')).read()
+def create(request):
+    imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
     return Response(imported_text)
 
 
-def new_entry(request):
-    imported_text = open(os.path.join(HERE, 'journal.html')).read()
+def detail(request):
+    imported_text = open(os.path.join(HERE, 'templates/single-entry.html')).read()
+    return Response(imported_text)
+
+
+def update(request):
+    imported_text = open(os.path.join(HERE, 'templates/edit-entry.html')).read()
     return Response(imported_text)
 
 
@@ -40,11 +45,9 @@ def edit_entry():
 
 
 def includeme(config):
-    config.add_view(my_view1, route_name='home')
-    config.add_view(my_view2, route_name='detail')
-    config.add_view(journal, route_name='journal')
-    config.add_view(new_entry, route_name='new-entry')
-    config.add_view(single_entry, route_name='single-entry')
-    config.add_view(edit_entry, route_name='edit-entry')
+    config.add_view(list_, route_name='list')
+    config.add_view(detail, route_name='detail')
+    config.add_view(create, route_name='create')
+    config.add_view(update, route_name='update')
 
     config.add_view(bootstrap, route_name='bootstrap')
