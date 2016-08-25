@@ -21,7 +21,7 @@ def testapp():
 
 def test_layout_root(testapp):
     response = testapp.get('/', status=200)
-    assert b'owner: Tatiana Weaver' in response.body
+    assert b'<p>David Banks</p>' in response.body
 
 
 def test_root_contents(testapp):
