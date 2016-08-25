@@ -42,7 +42,7 @@ ENTRIES = [
 @view_config(route_name='create', renderer='templates/new-entry.jinja2')
 def list_(request):
     return {"entries": ENTRIES}
-# 
+#
 #
 # @view_config(route_name='create', renderer='templates/new-entry.jinja2')
 # def create(request):
@@ -51,7 +51,9 @@ def list_(request):
 
 @view_config(route_name='detail', renderer='templates/single-entry.jinja2')
 def detail(request):
-    return {"entries": ENTRIES}
+    for entry in ENTRIES:
+        if entry['id'] == int(request.matchdict['id'])
+    return entry
 
 
 @view_config(route_name='update', renderer='templates/edit-entry.jinja2')
