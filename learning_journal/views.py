@@ -35,14 +35,18 @@ ENTRIES = [
 ]
 
 
+# stack all the @ decorators ontop off one def
+
+
 @view_config(route_name='list', renderer='templates/home.jinja2')
+@view_config(route_name='create', renderer='templates/new-entry.jinja2')
 def list_(request):
     return {"entries": ENTRIES}
-
-
-@view_config(route_name='create', renderer='templates/new-entry.jinja2')
-def create(request):
-    return {"entries": ENTRIES}
+# 
+#
+# @view_config(route_name='create', renderer='templates/new-entry.jinja2')
+# def create(request):
+#     return {"entries": ENTRIES}
 
 
 @view_config(route_name='detail', renderer='templates/single-entry.jinja2')

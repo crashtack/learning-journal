@@ -2,9 +2,14 @@
 {% extends "bootstatmenu.jinja2" %}
 {% block body %}
 
+<div class="jumbotron">
   <h1>single-entry.html</h1>
-  <h1>More crappy html</h1>
+  <h1>{{ title }}</h1>
+  <p>{{ creation_date }}</p>
+  <hr>
+  <p>{{ body | safe }}</P>
   <h2><a href='/'>Back to Home</a></h2>
   <h2><a href='/journal/1/edit-entry'>Edit Entry</a></h2>
+</div>
 
 {% endblock %}
