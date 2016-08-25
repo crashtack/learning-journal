@@ -58,3 +58,13 @@ def update(request):
 @view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
 def bootstrap(request):
     return {"entries": ENTRIES}
+
+
+@view_config(route_name='bootstrap_navbar', renderer='navbar-static-top/index.jinja2')
+def bootstrap_navbar(request):
+    return {"entries": ENTRIES}
+
+
+@view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
+def bootstrap_navbar2(request):
+    return {"entries": ENTRIES}
