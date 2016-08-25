@@ -42,36 +42,26 @@ ENTRIES = [
 @view_config(route_name='create', renderer='templates/new-entry.jinja2')
 def list_(request):
     return {"entries": ENTRIES}
-#
-#
-# @view_config(route_name='create', renderer='templates/new-entry.jinja2')
-# def create(request):
-#     return {"entries": ENTRIES}
+
 
 @view_config(route_name='update', renderer='templates/edit-entry.jinja2')
+def update(request):
+    for entry in ENTRIES:
+        if entry['id'] == int(request.matchdict['id']):
+            return {"entry": entry}
+
+
+# @view_config(route_name='update', renderer='templates/edit-entry.jinja2')
 @view_config(route_name='detail', renderer='templates/single-entry.jinja2')
 def detail(request):
     for entry in ENTRIES:
         if entry['id'] == int(request.matchdict['id']):
-            return entry
-    # return a 404 if the id is not present
-
-# @view_config(route_name='update', renderer='templates/edit-entry.jinja2')
-# def update(request):
-#     return {"entries": ENTRIES}
+            return {"entry": entry}
 
 
-# @view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
-# def bootstrap(request):
-#     return {"entries": ENTRIES}
 
 @view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
 @view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
 @view_config(route_name='bootstrap_navbar', renderer='navbar-static-top/index.jinja2')
 def bootstrap_navbar(request):
     return {"entries": ENTRIES}
-
-#
-# @view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
-# def bootstrap_navbar2(request):
-#     return {"entries": ENTRIES}

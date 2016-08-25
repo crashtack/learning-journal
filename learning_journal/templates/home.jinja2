@@ -6,7 +6,7 @@
       <h2>The list view points here! home.html</h2>
       {% for entry in entries %}
           <article>
-              <h3><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h3>
+              <h3><a href="{{request.route_url('detail',id=entry.id)}}">{{ entry.title }}</a></h3>
               <hr />
               <p>Created <strong>{{ entry.date }}</strong></p>
               <hr />
@@ -15,6 +15,6 @@
       {% endfor %}
     </dir>
 
-    <h2><a href='/journal/new-entry'>New Entry</a></h2>
+    <h2><a href="{{request.route_url('create')}}">New Entry</a></h2>
 
 {% endblock %}
