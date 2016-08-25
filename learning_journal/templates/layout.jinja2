@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Pulled from week 3 tuesdays lecture notes -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Layout for the Python Learning Journal</title>
+        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    </head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ request.route_url('list') }}">Home</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>My Python Journal</h1>
+    <section id="content">
+        {% block body %}{% endblock %}
+    </section>
+</main>
+</body>
+<footer>
+    </p>
+</footer>
+</html>
