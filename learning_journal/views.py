@@ -1,8 +1,8 @@
 from pyramid.response import Response
 import os
 from pyramid.view import view_config
+from pyramid.httpexceptions import (HTTPNotFound, HTTPFound)
 # from jinja2 import Template
-
 
 
 HERE = os.path.dirname(__file__)
@@ -48,29 +48,30 @@ def list_(request):
 # def create(request):
 #     return {"entries": ENTRIES}
 
-
+@view_config(route_name='update', renderer='templates/edit-entry.jinja2')
 @view_config(route_name='detail', renderer='templates/single-entry.jinja2')
 def detail(request):
     for entry in ENTRIES:
-        if entry['id'] == int(request.matchdict['id'])
-    return entry
+        if entry['id'] == int(request.matchdict['id']):
+            return entry
+    # return a 404 if the id is not present
+
+# @view_config(route_name='update', renderer='templates/edit-entry.jinja2')
+# def update(request):
+#     return {"entries": ENTRIES}
 
 
-@view_config(route_name='update', renderer='templates/edit-entry.jinja2')
-def update(request):
-    return {"entries": ENTRIES}
-
+# @view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
+# def bootstrap(request):
+#     return {"entries": ENTRIES}
 
 @view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
-def bootstrap(request):
-    return {"entries": ENTRIES}
-
-
+@view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
 @view_config(route_name='bootstrap_navbar', renderer='navbar-static-top/index.jinja2')
 def bootstrap_navbar(request):
     return {"entries": ENTRIES}
 
-
-@view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
-def bootstrap_navbar2(request):
-    return {"entries": ENTRIES}
+#
+# @view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
+# def bootstrap_navbar2(request):
+#     return {"entries": ENTRIES}
