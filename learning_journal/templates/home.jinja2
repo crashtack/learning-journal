@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 {% extends "bootstatmenu.jinja2" %}
 {% block body %}
-      <h1>The list view points here! home.html</h1>
-    {% for entry in entries %}
-        <article>
-            <h2><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h2>
-            <hr />
-            <p>Created <strong>{{ entry.date }}</strong></p>
-            <hr />
-            <p>{{ entry.body  | safe }}</p>
-        </article>
-    {% endfor %}
+
+
+
+    <div class="jumbotron">
+      <h2>The list view points here! home.html</h2>
+      {% for entry in entries %}
+          <article>
+              <h3><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h3>
+              <hr />
+              <p>Created <strong>{{ entry.date }}</strong></p>
+              <hr />
+              <p>{{ entry.body  | safe }}</p>
+          </article>
+      {% endfor %}
+    </dir>
+
     <h2><a href='/journal/new-entry'>New Entry</a></h2>
-    </body>
-</html>
+
 {% endblock %}
