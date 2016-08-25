@@ -1,3 +1,10 @@
-<h1>new-entry.html</h1>
-<h1>More crappy html</h1>
-<h2><a href='/'>Back to Home</a></h2>
+<!DOCTYPE html>
+{% extends "bootstatmenu.jinja2" %}
+{% block body %}
+  <h1>new-entry.html</h1>
+  <h2><a href='/'>Back to Home</a></h2>
+  <div class="form-group">
+    <label for="comment">Comment:</label>
+    <textarea class="form-control" rows="5" id="comment"></textarea>
+  </div>
+{% endblock %}

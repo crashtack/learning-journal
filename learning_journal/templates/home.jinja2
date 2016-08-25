@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-{% extends "layout.jinja2" %}
+{% extends "bootstatmenu.jinja2" %}
 {% block body %}
       <h1>The list view points here! home.html</h1>
-      <h1>More crappy html</h1>
     {% for entry in entries %}
         <article>
-            <h1><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h1>
+            <h2><a href=/journal/{{entry.id}}>{{ entry.title }}</a></h2>
             <hr />
             <p>Created <strong>{{ entry.date }}</strong></p>
             <hr />
