@@ -1,11 +1,11 @@
-from pyramid.response import Response
-import os
+# from pyramid.response import Response
+# import os
 from pyramid.view import view_config
 from pyramid.httpexceptions import (HTTPNotFound, HTTPFound)
 # from jinja2 import Template
 
 
-HERE = os.path.dirname(__file__)
+# HERE = os.path.dirname(__file__)
 
 ENTRIES = [
     {
@@ -35,7 +35,7 @@ ENTRIES = [
 ]
 
 
-# stack all the @ decorators ontop off one def
+# TODO: stack all the @ decorators ontop off like defs
 
 
 @view_config(route_name='list', renderer='templates/home.jinja2')
