@@ -1,14 +1,35 @@
 import pytest
-
+from learning_journal.views import detail
 from pyramid import testing
+from pyramid.httpexceptions import (HTTPNotFound, HTTPFound)
 
 
+
+
+# TODO: parametrize this test for value in the actual journal data
 def test_detail():
     from learning_journal.views import detail
     request = testing.DummyRequest()
+    request.matchdict["id"] = 3
     info = detail(request)
     # import pdb; pdb.set_trace()
-    assert 'title' in info['entries'][0]
+    assert 'title' in info['entry']
+
+
+# TODO: parametrize this test for value in the actual journal data
+def test_detail():
+    from learning_journal.views import detail
+    request = testing.DummyRequest()
+    request.matchdict["id"] = 3
+    info = detail(request)
+    # import pdb; pdb.set_trace()
+    assert 'Day 3' == info['entry']['title']
+
+
+def test_detail_not_found():
+    request = testing.DummyRequest()
+    with pytest.raises(HTTPNotFound):
+        request.matchdict["id"] = 3
 
 
 @pytest.fixture()
