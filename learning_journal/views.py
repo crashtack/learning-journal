@@ -52,10 +52,3 @@ def detail(request):
             return {"entry": entry}
     else:
         raise HTTPNotFound('Entry Not Found')
-
-
-@view_config(route_name='bootstrap', renderer='templates/bootstrap.jinja2')
-@view_config(route_name='bootstrap_navbar2', renderer='navbar-static-top/index.jinja2')
-@view_config(route_name='bootstrap_navbar', renderer='navbar-static-top/index.jinja2')
-def bootstrap_navbar(request):
-    return {"entries": ENTRIES}
