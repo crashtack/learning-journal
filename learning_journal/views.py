@@ -1,53 +1,46 @@
-from pyramid.response import Response
-import os
+from pyramid.view import view_config
+from pyramid.httpexceptions import (HTTPNotFound, HTTPFound)
 
 
-HERE = os.path.dirname(__file__)
+ENTRIES = [
+    {
+        "title": "Day 1",
+        "id": 1,
+        "date": "August 20, 2016",
+        "body": "Today I learned about <strong>Pyramid</strong>."
+    },
+    {
+        "title": "Day 2",
+        "id": 2,
+        "date": "August 21, 2016",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Curabitur sodales ligula in libero."
+    },
+    {
+        "title": "Day 3",
+        "id": 3,
+        "date": "August 22, 2016",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Curabitur sodales ligula in libero."
+    },
+    {
+        "title": "Day 4",
+        "id": 4,
+        "date": "August 23, 2016",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Curabitur sodales ligula in libero."
+    },
+]
 
 
+@view_config(route_name='list', renderer='templates/home.jinja2')
+@view_config(route_name='create', renderer='templates/new-entry.jinja2')
 def list_(request):
-    imported_text = open(os.path.join(HERE, 'templates/home.html')).read()
-    return Response(imported_text)
+    return {"entries": ENTRIES}
 
 
-def my_view2(request):
-    imported_text = open(os.path.join(HERE, 'templates/sample2.html')).read()
-    return Response(imported_text)
-
-
-def create(request):
-    imported_text = open(os.path.join(HERE, 'templates/new-entry.html')).read()
-    return Response(imported_text)
-
-
+@view_config(route_name='detail', renderer='templates/single-entry.jinja2')
+@view_config(route_name='update', renderer='templates/edit-entry.jinja2')
 def detail(request):
-    imported_text = open(os.path.join(HERE, 'templates/single-entry.html')).read()
-    return Response(imported_text)
-
-
-def update(request):
-    imported_text = open(os.path.join(HERE, 'templates/edit-entry.html')).read()
-    return Response(imported_text)
-
-
-def bootstrap(request):
-    imported_text = open(os.path.join(HERE,
-                                      'navbar-static-top/index.html')).read()
-    return Response(imported_text)
-
-
-def single_entry():
-    pass
-
-
-def edit_entry():
-    pass
-
-
-def includeme(config):
-    config.add_view(list_, route_name='list')
-    config.add_view(detail, route_name='detail')
-    config.add_view(create, route_name='create')
-    config.add_view(update, route_name='update')
-
-    config.add_view(bootstrap, route_name='bootstrap')
+    for entry in ENTRIES:
+        if entry['id'] == int(request.matchdict['id']):
+            return {"entry": entry}
+    else:
+        raise HTTPNotFound('Entry Not Found')
